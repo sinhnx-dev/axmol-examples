@@ -25,6 +25,7 @@
 
 #include "AppDelegate.h"
 #include "MainScene.h"
+#include "/AudioAndSfx/AudioSettingScene.h"
 
 #define USE_AUDIO_ENGINE 1
 
@@ -74,7 +75,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     director->setStatsDisplay(true);
 
     // set FPS. the default value is 1.0/60 if you don't call this
-    director->setAnimationInterval(1.0f / 60);
+    director->setAnimationInterval(1.0f / 30);
 
     // Set the design resolution
     glView->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height,
@@ -99,8 +100,10 @@ bool AppDelegate::applicationDidFinishLaunching()
                                             smallResolutionSize.width / designResolutionSize.width));
     }
 
+    SpriteFrameCache::getInstance()->addSpriteFramesWithFile("res/BasicUI-0.plist");
+
     // create a scene. it's an autorelease object
-    auto scene = utils::createInstance<MainScene>();
+    auto scene = utils::createInstance<AudioSettingScene>();
 
     // run
     director->runWithScene(scene);

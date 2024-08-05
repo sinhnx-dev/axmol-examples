@@ -65,9 +65,11 @@ endif()
 # The common cross-platforms source files and header files
 file(GLOB_RECURSE GAME_HEADER
     Source/*.h Source/*.hpp
+    Source/AudioAndSfx/*.h Source/AudioAndSfx/*.hpp
     )
 file(GLOB_RECURSE GAME_SOURCE
-    Source/*.cpp Source/*.c
+    Source/AudioAndSfx/*.cpp Source/AudioAndSfx/*.c
+    Source/AudioAndSfx/*.cpp Source/AudioAndSfx/*.c
     )
 
 set(GAME_INC_DIRS
@@ -231,7 +233,7 @@ if (_AX_USE_PREBUILT) # support windows and linux
 endif()
 
 if (NOT DEFINED BUILD_ENGINE_DONE)
-    ax_uwp_set_all_targets_deploy_min_version()
+    #ax_uwp_set_all_targets_deploy_min_version()
 endif()
 
 ax_setup_app_props(${APP_NAME})

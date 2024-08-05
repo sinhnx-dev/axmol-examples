@@ -27,7 +27,7 @@
 #define __MAIN_SCENE_H__
 
 #include "axmol.h"
-
+#include "GameUI/PauseMenuLayer.h"
 
 class MainScene : public ax::Scene
 {

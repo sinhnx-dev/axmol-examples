@@ -24,6 +24,8 @@
  ****************************************************************************/
 
 #include "MainScene.h"
+#include "MainMenu.h"
+#include "GameUI/PauseMenuLayer.h"
 
 USING_NS_AX;
 
@@ -45,11 +47,15 @@ bool MainScene::init()
     {
         return false;
     }
-
+    // SpriteFrameCache::getInstance()->addSpriteFramesWithFile("res/BasicUI.plist");
     auto visibleSize = _director->getVisibleSize();
-    auto origin = _director->getVisibleOrigin();
-    auto safeArea = _director->getSafeAreaRect();
-    auto safeOrigin = safeArea.origin;
+    auto origin      = _director->getVisibleOrigin();
+    auto safeArea    = _director->getSafeAreaRect();
+    auto safeOrigin  = safeArea.origin;
+
+    auto mainMenu = MainMenu::create();
+    mainMenu->setPosition(Vec2::ZERO);
+    this->addChild(mainMenu, 10);
 
     /////////////////////////////
     // 2. add a menu item with "X" image, which is clicked to quit the program
@@ -57,7 +63,7 @@ bool MainScene::init()
 
     // add a "close" icon to exit the progress. it's an autorelease object
     auto closeItem = MenuItemImage::create("CloseNormal.png", "CloseSelected.png",
-        AX_CALLBACK_1(MainScene::menuCloseCallback, this));
+                                           AX_CALLBACK_1(MainScene::menuCloseCallback, this));
 
     if (closeItem == nullptr || closeItem->getContentSize().width <= 0 || closeItem->getContentSize().height <= 0)
     {
@@ -75,73 +81,84 @@ bool MainScene::init()
     menu->setPosition(Vec2::ZERO);
     this->addChild(menu, 1);
 
+    auto banner    = Sprite::createWithSpriteFrameName("Banner_Green.png");
+    auto lblBanner = Label::Label::createWithTTF("Axmol Game Demo", "fonts/Ignotum Regular.ttf", 150);
+    lblBanner->setPosition(Vec2(banner->getContentSize().width / 2, banner->getContentSize().height / 1.8));
+    banner->setPosition(
+        Vec2(visibleSize.width / 2 + origin.x, visibleSize.height - banner->getContentSize().height / 5 / 2));
+    banner->addChild(lblBanner);
+    banner->setScale(1 / 6.0);
+    this->addChild(banner, 10);
+
     /////////////////////////////
     // 3. add your codes below...
 
+    // auto layer = LayerColor::create(Color4B::GREEN);
+    // this->addChild(layer);
+    // log("add color layer");
+
     // Some templates (uncomment what you  need)
-    auto touchListener = EventListenerTouchAllAtOnce::create();
+    auto touchListener            = EventListenerTouchAllAtOnce::create();
     touchListener->onTouchesBegan = AX_CALLBACK_2(MainScene::onTouchesBegan, this);
     touchListener->onTouchesMoved = AX_CALLBACK_2(MainScene::onTouchesMoved, this);
     touchListener->onTouchesEnded = AX_CALLBACK_2(MainScene::onTouchesEnded, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
 
-    //auto mouseListener           = EventListenerMouse::create();
-    //mouseListener->onMouseMove   = AX_CALLBACK_1(MainScene::onMouseMove, this);
-    //mouseListener->onMouseUp     = AX_CALLBACK_1(MainScene::onMouseUp, this);
-    //mouseListener->onMouseDown   = AX_CALLBACK_1(MainScene::onMouseDown, this);
-    //mouseListener->onMouseScroll = AX_CALLBACK_1(MainScene::onMouseScroll, this);
+    // auto mouseListener           = EventListenerMouse::create();
+    // mouseListener->onMouseMove   = AX_CALLBACK_1(MainScene::onMouseMove, this);
+    // mouseListener->onMouseUp     = AX_CALLBACK_1(MainScene::onMouseUp, this);
+    // mouseListener->onMouseDown   = AX_CALLBACK_1(MainScene::onMouseDown, this);
+    // mouseListener->onMouseScroll = AX_CALLBACK_1(MainScene::onMouseScroll, this);
     //_eventDispatcher->addEventListenerWithSceneGraphPriority(mouseListener, this);
 
-    //auto keyboardListener           = EventListenerKeyboard::create();
-    //keyboardListener->onKeyPressed  = AX_CALLBACK_2(MainScene::onKeyPressed, this);
-    //keyboardListener->onKeyReleased = AX_CALLBACK_2(MainScene::onKeyReleased, this);
+    // auto keyboardListener           = EventListenerKeyboard::create();
+    // keyboardListener->onKeyPressed  = AX_CALLBACK_2(MainScene::onKeyPressed, this);
+    // keyboardListener->onKeyReleased = AX_CALLBACK_2(MainScene::onKeyReleased, this);
     //_eventDispatcher->addEventListenerWithFixedPriority(keyboardListener, 11);
-
-
 
     // add a label shows "Hello World"
     // create and initialize a label
 
-    auto label = Label::createWithTTF("Hello World", "fonts/Marker Felt.ttf", 24);
+    auto label = Label::createWithTTF("Axmol Game Demo", "fonts/Ignotum Regular.ttf", 28);
+    // label->setScale(miScale);
     if (label == nullptr)
     {
-        problemLoading("'fonts/Marker Felt.ttf'");
+        problemLoading("'fonts/Ignotum Regular.ttf'");
     }
     else
     {
         // position the label on the center of the screen
         label->setPosition(
-            Vec2(origin.x + visibleSize.width / 2, origin.y + visibleSize.height - label->getContentSize().height));
-
+            Vec2(origin.x + visibleSize.width / 2, origin.y + visibleSize.height - (label->getContentSize().height)));
         // add the label as a child to this layer
         this->addChild(label, 1);
     }
+
     // add "HelloWorld" splash screen"
-    auto sprite = Sprite::create("HelloWorld.png"sv);
-    if (sprite == nullptr)
-    {
-        problemLoading("'HelloWorld.png'");
-    }
-    else
-    {
-        // position the sprite on the center of the screen
-        sprite->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
+    // auto sprite = Sprite::create("HelloWorld.png"sv);
+    // if (sprite == nullptr)
+    // {
+    //     problemLoading("'HelloWorld.png'");
+    // }
+    // else
+    // {
+    //     // position the sprite on the center of the screen
+    //     sprite->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
 
-        // add the sprite as a child to this layer
-        this->addChild(sprite, 0);
-        auto drawNode = DrawNode::create();
-        drawNode->setPosition(Vec2(0, 0));
-        addChild(drawNode);
+    //     // add the sprite as a child to this layer
+    //     this->addChild(sprite, 0);
+    //     auto drawNode = DrawNode::create();
+    //     drawNode->setPosition(Vec2(0, 0));
+    //     addChild(drawNode);
 
-        drawNode->drawRect(safeArea.origin + Vec2(1, 1), safeArea.origin + safeArea.size, Color4F::BLUE);
-    }
+    //     drawNode->drawRect(safeArea.origin + Vec2(1, 1), safeArea.origin + safeArea.size, Color4F::BLUE);
+    // }
 
     // scheduleUpdate() is required to ensure update(float) is called on every loop
     scheduleUpdate();
 
     return true;
 }
-
 
 void MainScene::onTouchesBegan(const std::vector<ax::Touch*>& touches, ax::Event* event)
 {
@@ -215,7 +232,7 @@ void MainScene::update(float delta)
     {
         /////////////////////////////
         // Add your codes below...like....
-        // 
+        //
         // UpdateJoyStick();
         // UpdatePlayer();
         // UpdatePhysics();
@@ -234,42 +251,61 @@ void MainScene::update(float delta)
     }
 
     case GameState::menu1:
-    {    /////////////////////////////
+    {  /////////////////////////////
         // Add your codes below...like....
-        // 
+        //
         // UpdateMenu1();
         break;
     }
 
     case GameState::menu2:
-    {    /////////////////////////////
+    {  /////////////////////////////
         // Add your codes below...like....
-        // 
+        //
         // UpdateMenu2();
         break;
     }
 
     case GameState::end:
-    {    /////////////////////////////
+    {  /////////////////////////////
         // Add your codes below...like....
-        // 
+        //
         // CleanUpMyCrap();
         menuCloseCallback(this);
         break;
     }
 
-    } //switch
+    }  // switch
 }
 
 void MainScene::menuCloseCallback(Ref* sender)
 {
-    // Close the axmol game scene and quit the application
-    _director->end();
+    // auto visibleSize = _director->getVisibleSize();
+    // auto origin      = _director->getVisibleOrigin();
+    // auto pauseLayer = Layer::create();
+    // auto audioBox   = Sprite::createWithSpriteFrameName("Box_Blue_Rounded.png");
+    // audioBox->setPosition(origin.x + visibleSize.x / 2, origin.y + visibleSize.y / 2);
+    // audioBox->setScale(0.5);
+    // pauseLayer->addChild(audioBox);
 
+    auto pauseLayer = PauseMenuLayer::create();
+    // auto pauseLayer = utils::createInstance<PauseMenuLayer>();
+    this->addChild(pauseLayer);
+    log("add layer");
+    // auto layer = LayerColor::create(Color4B::WHITE);
+    // auto audioBox = Sprite::createWithSpriteFrameName("Box_Blue_Rounded.png");
+
+    // audioBox->setPosition(origin.x + visibleSize.x / 2,origin.y + visibleSize.y/2);
+    // audioBox->setScale(0.5);
+    // layer->addChild(audioBox);
+    // this->addChild(layer);
+    // log("add color layer");
+
+    // _director->end();
     /*To navigate back to native iOS screen(if present) without quitting the application  ,do not use
      * _director->end() as given above,instead trigger a custom event created in RootViewController.mm
      * as below*/
 
-     // EventCustom customEndEvent("game_scene_close_event");
-     //_eventDispatcher->dispatchEvent(&customEndEvent);
+    // EventCustom customEndEvent("game_scene_close_event");
+    //_eventDispatcher->dispatchEvent(&customEndEvent);
 }
