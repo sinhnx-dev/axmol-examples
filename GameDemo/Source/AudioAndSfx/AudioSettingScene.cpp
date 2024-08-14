@@ -21,6 +21,7 @@ bool AudioSettingScene::init()
     auto audioBox = Sprite::createWithSpriteFrameName("Box_Blue_Rounded.png");
     audioBox->setPosition(origin.x + visibleSize.x / 2,origin.y + visibleSize.y/2);
     this->addChild(audioBox);
+    return true;
 }
 
 void AudioSettingScene::update(float delta)

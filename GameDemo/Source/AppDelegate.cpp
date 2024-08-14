@@ -25,7 +25,6 @@
 
 #include "AppDelegate.h"
 #include "MainScene.h"
-#include "/AudioAndSfx/AudioSettingScene.h"
 
 #define USE_AUDIO_ENGINE 1
 
@@ -103,7 +102,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     SpriteFrameCache::getInstance()->addSpriteFramesWithFile("res/BasicUI-0.plist");
 
     // create a scene. it's an autorelease object
-    auto scene = utils::createInstance<AudioSettingScene>();
+    auto scene = utils::createInstance<MainScene>();
 
     // run
     director->runWithScene(scene);

@@ -233,5 +233,6 @@ tests/unit-tests/Content
 .gitee
 release_note_draft.txt
 
+**/build/
 **/build_*/
 **/proj.*/

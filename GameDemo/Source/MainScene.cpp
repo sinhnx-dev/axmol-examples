@@ -26,6 +26,7 @@
 #include "MainScene.h"
 #include "MainMenu.h"
 #include "GameUI/PauseMenuLayer.h"
+#include <cocos2d.h>
 
 USING_NS_AX;
 
@@ -278,7 +279,7 @@ void MainScene::update(float delta)
     }  // switch
 }
 
-void MainScene::menuCloseCallback(Ref* sender)
+void MainScene::menuCloseCallback(ax::Object* sender)
 {
     // auto visibleSize = _director->getVisibleSize();
     // auto origin      = _director->getVisibleOrigin();
@@ -291,7 +292,6 @@ void MainScene::menuCloseCallback(Ref* sender)
     auto pauseLayer = PauseMenuLayer::create();
     // auto pauseLayer = utils::createInstance<PauseMenuLayer>();
     this->addChild(pauseLayer);
-    log("add layer");
     // auto layer = LayerColor::create(Color4B::WHITE);
     // auto audioBox = Sprite::createWithSpriteFrameName("Box_Blue_Rounded.png");
 
