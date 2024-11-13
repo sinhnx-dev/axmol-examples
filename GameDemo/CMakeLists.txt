@@ -73,9 +73,19 @@ endif()
 # The common cross-platforms source files and header files
 file(GLOB_RECURSE GAME_HEADER
     Source/*.h Source/*.hpp
+    Source/Sprites/*.hpp
+    Source/Particles/*.hpp
+    Source/GameUI/*.hpp
+    Source/TileMap/*.hpp
+    Source/Events/*.hpp
     )
 file(GLOB_RECURSE GAME_SOURCE
     Source/*.cpp Source/*.c
+    Source/Sprites/*.cpp
+    Source/Particles/*.cpp
+    Source/GameUI/*.cpp
+    Source/TileMap/*.cpp
+    Source/Events/*.cpp
     )
 
 set(GAME_INC_DIRS
@@ -84,7 +94,7 @@ set(GAME_INC_DIRS
 
 set(content_folder
     "${CMAKE_CURRENT_SOURCE_DIR}/Content"
-    )
+)
 
 if(APPLE)
     ax_mark_multi_resources(common_content_files RES_TO "Resources" FOLDERS ${content_folder})

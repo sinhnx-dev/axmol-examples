@@ -26,6 +26,8 @@
 #include "MainScene.h"
 #include "MainMenu.h"
 #include "GameUI/PauseMenuLayer.h"
+#include "Scenes/FirstScene.hpp"
+#include "TileMap/TileMapScene.hpp"
 #include <cocos2d.h>
 
 USING_NS_AX;
@@ -54,9 +56,8 @@ bool MainScene::init()
     auto safeArea    = _director->getSafeAreaRect();
     auto safeOrigin  = safeArea.origin;
 
-    auto mainMenu = MainMenu::create();
+    auto mainMenu = utils::createInstance<MainMenu>();
     mainMenu->setPosition(Vec2::ZERO);
-    this->addChild(mainMenu, 10);
 
     /////////////////////////////
     // 2. add a menu item with "X" image, which is clicked to quit the program
@@ -76,19 +77,16 @@ bool MainScene::init()
         float y = safeOrigin.y + closeItem->getContentSize().height / 2;
         closeItem->setPosition(Vec2(x, y));
     }
-
-    // create menu, it's an autorelease object
-    auto menu = Menu::create(closeItem, NULL);
-    menu->setPosition(Vec2::ZERO);
-    this->addChild(menu, 1);
+    mainMenu->addChild(closeItem);
+    this->addChild(mainMenu, 10);
 
     auto banner    = Sprite::createWithSpriteFrameName("Banner_Green.png");
-    auto lblBanner = Label::Label::createWithTTF("Axmol Game Demo", "fonts/Ignotum Regular.ttf", 150);
+    auto lblBanner = Label::Label::createWithTTF("Axmol Game Demo", "fonts/Ignotum Regular.ttf", 60);
     lblBanner->setPosition(Vec2(banner->getContentSize().width / 2, banner->getContentSize().height / 1.8));
     banner->setPosition(
-        Vec2(visibleSize.width / 2 + origin.x, visibleSize.height - banner->getContentSize().height / 5 / 2));
+        Vec2(visibleSize.width / 2 + origin.x, visibleSize.height - banner->getContentSize().height / 3 / 2));
     banner->addChild(lblBanner);
-    banner->setScale(1 / 6.0);
+    banner->setScale(1 / 3.0);
     this->addChild(banner, 10);
 
     /////////////////////////////
@@ -136,7 +134,7 @@ bool MainScene::init()
     }
 
     // add "HelloWorld" splash screen"
-    // auto sprite = Sprite::create("HelloWorld.png"sv);
+    // auto sprite = Sprite::create("HelloWorld.png");
     // if (sprite == nullptr)
     // {
     //     problemLoading("'HelloWorld.png'");
@@ -200,7 +198,7 @@ void MainScene::onMouseUp(Event* event)
 void MainScene::onMouseMove(Event* event)
 {
     EventMouse* e = static_cast<EventMouse*>(event);
-    AXLOG("onMouseMove detected, X:%f  Y:%f", e->getCursorX(), e->getCursorY());
+    AXLOG("onMouseMove detected, X:%f  Y:%f", e->getLocation().x, e->getLocation().y);
 }
 
 void MainScene::onMouseScroll(Event* event)
@@ -281,17 +279,9 @@ void MainScene::update(float delta)
 
 void MainScene::menuCloseCallback(ax::Object* sender)
 {
-    // auto visibleSize = _director->getVisibleSize();
-    // auto origin      = _director->getVisibleOrigin();
-    // auto pauseLayer = Layer::create();
-    // auto audioBox   = Sprite::createWithSpriteFrameName("Box_Blue_Rounded.png");
-    // audioBox->setPosition(origin.x + visibleSize.x / 2, origin.y + visibleSize.y / 2);
-    // audioBox->setScale(0.5);
-    // pauseLayer->addChild(audioBox);
-
-    auto pauseLayer = PauseMenuLayer::create();
+    // auto pauseLayer = PauseMenuLayer::create();
     // auto pauseLayer = utils::createInstance<PauseMenuLayer>();
-    this->addChild(pauseLayer);
+    // this->addChild(pauseLayer, 100);
     // auto layer = LayerColor::create(Color4B::WHITE);
     // auto audioBox = Sprite::createWithSpriteFrameName("Box_Blue_Rounded.png");
 
@@ -301,7 +291,11 @@ void MainScene::menuCloseCallback(ax::Object* sender)
     // this->addChild(layer);
     // log("add color layer");
 
-    // _director->end();
+    _director->end();
+    // AXLOG("Scene Demo!");
+    // auto firstScene = utils::createInstance<FirstScene>();
+    // _director->pushScene(firstScene);
+
     /*To navigate back to native iOS screen(if present) without quitting the application  ,do not use
      * _director->end() as given above,instead trigger a custom event created in RootViewController.mm
      * as below*/

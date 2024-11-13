@@ -7,7 +7,6 @@ class PauseMenuLayer : public ax::Layer
 {
 public:
     bool init() override;
-    // void update(float delta) override;
 
 private:
 };

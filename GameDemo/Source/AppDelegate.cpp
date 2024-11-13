@@ -83,23 +83,33 @@ bool AppDelegate::applicationDidFinishLaunching()
     // if the frame's height is larger than the height of medium size.
     if (frameSize.height > mediumResolutionSize.height)
     {
+        FileUtils::getInstance()->setSearchPaths({ "res/HDR" });
         director->setContentScaleFactor(MIN(largeResolutionSize.height / designResolutionSize.height,
                                             largeResolutionSize.width / designResolutionSize.width));
+        AXLOG("HDR");
     }
     // if the frame's height is larger than the height of small size.
     else if (frameSize.height > smallResolutionSize.height)
     {
+        FileUtils::getInstance()->setSearchPaths({ "res/HD" });
         director->setContentScaleFactor(MIN(mediumResolutionSize.height / designResolutionSize.height,
                                             mediumResolutionSize.width / designResolutionSize.width));
+        AXLOG("HD");
     }
     // if the frame's height is smaller than the height of medium size.
     else
     {
+        FileUtils::getInstance()->setSearchPaths({ "res/SD" });
         director->setContentScaleFactor(MIN(smallResolutionSize.height / designResolutionSize.height,
                                             smallResolutionSize.width / designResolutionSize.width));
+        AXLOG("SD");
     }
 
-    SpriteFrameCache::getInstance()->addSpriteFramesWithFile("res/BasicUI-0.plist");
+    SpriteFrameCache::getInstance()->addSpriteFramesWithFile("BoxesBanners.plist");
+    SpriteFrameCache::getInstance()->addSpriteFramesWithFile("ButtonsIcons.plist");
+    SpriteFrameCache::getInstance()->addSpriteFramesWithFile("ButtonsText.plist");
+    SpriteFrameCache::getInstance()->addSpriteFramesWithFile("Icons.plist");
+    SpriteFrameCache::getInstance()->addSpriteFramesWithFile("Sliders.plist");
 
     // create a scene. it's an autorelease object
     auto scene = utils::createInstance<MainScene>();
