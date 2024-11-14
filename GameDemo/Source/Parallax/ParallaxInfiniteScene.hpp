@@ -6,7 +6,7 @@
 
 USING_NS_AX;
 
-class ParallaxScene : public ax::Scene
+class ParallaxInfiniteScene : public ax::Scene
 {
     float m_speed;
 

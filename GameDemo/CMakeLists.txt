@@ -74,18 +74,19 @@ endif()
 file(GLOB_RECURSE GAME_HEADER
     Source/*.h Source/*.hpp
     Source/Sprites/*.hpp
-    Source/Particles/*.hpp
+    Source/Scenes/*.hpp
     Source/GameUI/*.hpp
-    Source/TileMap/*.hpp
     Source/Events/*.hpp
+    Source/Particles/*.hpp
+    Source/TileMap/*.hpp
     )
 file(GLOB_RECURSE GAME_SOURCE
     Source/*.cpp Source/*.c
     Source/Sprites/*.cpp
-    Source/Particles/*.cpp
+    Source/Scenes/*.cpp
     Source/GameUI/*.cpp
-    Source/TileMap/*.cpp
     Source/Events/*.cpp
+    Source/Particles/*.cpp
     )
 
 set(GAME_INC_DIRS
