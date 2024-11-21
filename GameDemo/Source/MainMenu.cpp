@@ -1,5 +1,4 @@
 #include "MainMenu.h"
-#include "AudioAndSfx/AudioSettingScene.hpp"
 
 #include "Particles/BuiltInParticleScene.hpp"
 #include "Particles/CustomParticleScene.hpp"
@@ -17,6 +16,8 @@
 #include "GameUI/LabelDemoScene.hpp"
 #include "GameUI/UiComponentsScene.hpp"
 
+#include "Events/EventDispatchScene.hpp"
+
 #include "TileMap/TileMapScene.hpp"
 #include "TileMap/TinySkiMapScene.hpp"
 
@@ -25,7 +26,8 @@
 #include "PhysicEngine/CollisionDetectionScene.hpp"
 #include "PhysicEngine/ContactsJointsScene.hpp"
 
-#include "Events/EventDispatchScene.hpp"
+#include "AudioEngine/AudioSettingScene.hpp"
+
 
 USING_NS_AX;
 
