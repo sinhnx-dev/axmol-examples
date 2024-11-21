@@ -18,6 +18,12 @@
 #include "GameUI/UiComponentsScene.hpp"
 
 #include "TileMap/TileMapScene.hpp"
+#include "TileMap/TinySkiMapScene.hpp"
+
+#include "PhysicEngine/PhysicWorldScene.hpp"
+#include "PhysicEngine/FilteringCollisionsScene.hpp"
+#include "PhysicEngine/CollisionDetectionScene.hpp"
+#include "PhysicEngine/ContactsJointsScene.hpp"
 
 #include "Events/EventDispatchScene.hpp"
 
@@ -192,18 +198,48 @@ ax::Vector<ax::MenuItem*> MainMenu::getMenuItems()
     menuItems.pushBack(getMenuItemSprite(miStartPosition + Vec2(xMove * 1, yMove * 2), miScale, "Tile Map", lblPosition,
                                          [&](ax::Object*) {
         AXLOG("Tile Map Scene !");
-        auto scene = utils::createInstance<TileMapScene>();
+        // auto scene = utils::createInstance<TileMapScene>();
+        auto scene = utils::createInstance<TinySkiMapScene>();
         Director::getInstance()->pushScene(scene);
     }));
 
-    menuItems.pushBack(getMenuItemSprite(miStartPosition + Vec2(xMove * 0, yMove * 3), miScale, "Audio Settings",
+    //row 3
+    menuItems.pushBack(getMenuItemSprite(miStartPosition + Vec2(xMove * 0, yMove * 3), miScale, "Physic Engine",
+                                         lblPosition, [&](ax::Object*) {
+        AXLOG("Physic Engine Scene !");
+        // create a scene. it's an autorelease object
+        auto audioScene = utils::createInstance<PhysicWorldScene>();
+        // pushScene
+        Director::getInstance()->pushScene(audioScene);
+    }));
+    menuItems.pushBack(getMenuItemSprite(miStartPosition + Vec2(xMove * 1, yMove * 3), miScale, "Filtering Collisions",
+                                         lblPosition, [&](ax::Object*) {
+        AXLOG("Filtering Collisions");
+        auto scene = utils::createInstance<FilteringCollisionsScene>();
+        Director::getInstance()->pushScene(scene);
+    }));
+    menuItems.pushBack(getMenuItemSprite(miStartPosition + Vec2(xMove * 2, yMove * 3), miScale, "Collision Detection",
+                                         lblPosition, [&](ax::Object*) {
+        AXLOG("Collision Detection");
+        auto scene = utils::createInstance<CollisionDetectionScene>();
+        Director::getInstance()->pushScene(scene);
+    }));
+    menuItems.pushBack(getMenuItemSprite(miStartPosition + Vec2(xMove * 3, yMove * 3), miScale, "Contacts/Joints",
+                                         lblPosition, [&](ax::Object*) {
+        AXLOG("ContactsJointsScene");
+        auto scene = utils::createInstance<ContactsJointsScene>();
+        Director::getInstance()->pushScene(scene);
+    }));
+    
+
+    // row 4
+    menuItems.pushBack(getMenuItemSprite(miStartPosition + Vec2(xMove * 2, yMove * 4), miScale, "Audio Settings",
                                          lblPosition, [&](ax::Object*) {
         AXLOG("Audio Settings Scene !");
         // create a scene. it's an autorelease object
         auto audioScene = utils::createInstance<AudioSettingScene>();
         // pushScene
         Director::getInstance()->pushScene(audioScene);
-        // Director::getInstance()->replaceScene(TransitionZoomFlipY::create(2, audioScene));
     }));
     
 

@@ -10,7 +10,9 @@ public:
 
     // void update(float delta) override;
 private:
-    
+   ax::ParallaxNode* paraNode;
+   void setParallaxNode();
+   void setParallaxInfinity();
 };
 
 #endif  // _PARALLAX_NODE_SCENE_HPP

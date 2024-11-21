@@ -17,18 +17,6 @@ bool TileMapScene::init()
     auto safeArea    = _director->getSafeAreaRect();
     auto safeOrigin  = safeArea.origin;
 
-    auto label = Label::createWithTTF("First Scene", "fonts/Marker Felt.ttf", 24);
-    if (label == nullptr)
-    {
-        AXLOG("can't load font'fonts/Marker Felt.ttf'");
-    }
-    else
-    {
-        label->setPosition(
-            Vec2(origin.x + visibleSize.width / 2, origin.y + visibleSize.height - label->getContentSize().height));
-        this->addChild(label, 1);
-    }
-
     auto menu = utils::createInstance<PopSceneMenu>();
     if (menu != nullptr)
     {
@@ -58,7 +46,7 @@ bool TileMapScene::init()
     ValueMap spawnPoint = objGroup->getObject("SpawnPoint");
     int x               = spawnPoint.at("x").asInt();
     int y               = spawnPoint.at("y").asInt();
-
+    
     _player = new Sprite();
     _player->initWithFile("res/tilemap/Player.png");
     _player->setPosition(Vec2(x, y));

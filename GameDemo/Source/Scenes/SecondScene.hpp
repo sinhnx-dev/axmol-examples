@@ -9,7 +9,7 @@ public:
     bool init() override;
 
 private:
-    void backScene(ax::Object* sender);
+    
 };
 
 #endif  // _SECOND_SCENE_HPP

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="80" height="45" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="1">
+ <tileset firstgid="1" source="tiles.tsx"/>
+ <group id="5" name="background">
+  <layer id="2" name="bg2" width="80" height="45">
+   <data encoding="base64" compression="zlib">
+   eJzt00EKgCAURVF31QJak/uPoCamhL4mwTnwJw4vz1IA4B/qdazRL1Mnjif9Mvpl9Mvol2kb7Z03/cbsLzfq1W6RvrPNVvRb5f9m7j69Der3zv5y+uX0+55+AAAAAAAAAPMOQ1lD8g==
+  </data>
+  </layer>
+  <layer id="1" name="bg1" width="80" height="45">
+   <data encoding="base64" compression="zlib">
+   eJzt0LERgDAQA0FXA8RADPRfFe7AgYL/YHdGuebGAAAA6GWb2xc7yt71d85di91l7/rTL6NfRr+Mfhn9Mvpl9Ms8c+9iX9U5AAAAAAAAAKDUDx7SE+0=
+  </data>
+  </layer>
+ </group>
+ <imagelayer id="3" name="img01"/>
+ <objectgroup color="#0433ff" id="4" name="obj01" class="player"/>
+</map>

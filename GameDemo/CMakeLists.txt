@@ -79,6 +79,7 @@ file(GLOB_RECURSE GAME_HEADER
     Source/Events/*.hpp
     Source/Particles/*.hpp
     Source/TileMap/*.hpp
+    Source/PhysicEngine/*.hpp
     )
 file(GLOB_RECURSE GAME_SOURCE
     Source/*.cpp Source/*.c
@@ -87,6 +88,8 @@ file(GLOB_RECURSE GAME_SOURCE
     Source/GameUI/*.cpp
     Source/Events/*.cpp
     Source/Particles/*.cpp
+    Source/TileMap/*.cpp
+    Source/PhysicEngine/*.cpp
     )
 
 set(GAME_INC_DIRS
