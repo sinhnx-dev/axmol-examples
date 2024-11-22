@@ -15,6 +15,7 @@
 
 #include "GameUI/LabelDemoScene.hpp"
 #include "GameUI/UiComponentsScene.hpp"
+#include "GameUI/VideoPlayerScene.hpp"
 
 #include "Events/EventDispatchScene.hpp"
 
@@ -204,14 +205,25 @@ ax::Vector<ax::MenuItem*> MainMenu::getMenuItems()
         auto scene = utils::createInstance<TinySkiMapScene>();
         Director::getInstance()->pushScene(scene);
     }));
+    
+    menuItems.pushBack(getMenuItemSprite(miStartPosition + Vec2(xMove * 2, yMove * 2), miScale, "Video Player", lblPosition,
+                                         [&](ax::Object*) {
+        AXLOG("VideoPlayer Scene !");
+        auto scene = utils::createInstance<VideoPlayerScene>();
+        Director::getInstance()->pushScene(scene);
+    }));
+    menuItems.pushBack(getMenuItemSprite(miStartPosition + Vec2(xMove * 3, yMove * 2), miScale, "???", lblPosition,
+                                         [&](ax::Object*) {
+        AXLOG("?? Scene !");
+        auto scene = utils::createInstance<VideoPlayerScene>();
+        Director::getInstance()->pushScene(scene);
+    }));
 
     //row 3
     menuItems.pushBack(getMenuItemSprite(miStartPosition + Vec2(xMove * 0, yMove * 3), miScale, "Physic Engine",
                                          lblPosition, [&](ax::Object*) {
         AXLOG("Physic Engine Scene !");
-        // create a scene. it's an autorelease object
         auto audioScene = utils::createInstance<PhysicWorldScene>();
-        // pushScene
         Director::getInstance()->pushScene(audioScene);
     }));
     menuItems.pushBack(getMenuItemSprite(miStartPosition + Vec2(xMove * 1, yMove * 3), miScale, "Filtering Collisions",
@@ -238,9 +250,7 @@ ax::Vector<ax::MenuItem*> MainMenu::getMenuItems()
     menuItems.pushBack(getMenuItemSprite(miStartPosition + Vec2(xMove * 2, yMove * 4), miScale, "Audio Settings",
                                          lblPosition, [&](ax::Object*) {
         AXLOG("Audio Settings Scene !");
-        // create a scene. it's an autorelease object
         auto audioScene = utils::createInstance<AudioSettingScene>();
-        // pushScene
         Director::getInstance()->pushScene(audioScene);
     }));
     
