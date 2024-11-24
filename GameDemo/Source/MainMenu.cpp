@@ -29,6 +29,10 @@
 
 #include "AudioEngine/AudioSettingScene.hpp"
 
+#include "WorkingWithData/HighScoreScene.hpp"
+#include "WorkingWithData/CsvHighScoreScene.hpp"
+#include "WorkingWithData/SqliteHighScoreScene.hpp"
+
 
 USING_NS_AX;
 
@@ -43,17 +47,17 @@ bool MainMenu::init()
     return true;
 }
 
-ax::MenuItemImage* MainMenu::getMenuItem(Vec2 postiton, float scale, const char* labelText, Vec2 labelPosition)
-{
-    auto mi = MenuItemImage::create("res/ButtonsText/ButtonText_Small_Green_Square.png",
-                                    "res/ButtonsText/ButtonText_Small_Orange_Square.png");
-    mi->setPosition(postiton);
-    mi->setScale(scale);
-    auto lbl = Label::Label::createWithTTF(labelText, "fonts/Ignotum Regular.ttf", 48);
-    lbl->setPosition(labelPosition);
-    mi->addChild(lbl);
-    return mi;
-}
+// ax::MenuItemImage* MainMenu::getMenuItem(Vec2 postiton, float scale, const char* labelText, Vec2 labelPosition)
+// {
+//     auto mi = MenuItemImage::create("res/ButtonsText/ButtonText_Small_Green_Square.png",
+//                                     "res/ButtonsText/ButtonText_Small_Orange_Square.png");
+//     mi->setPosition(postiton);
+//     mi->setScale(scale);
+//     auto lbl = Label::Label::createWithTTF(labelText, "fonts/Ignotum Regular.ttf", 48);
+//     lbl->setPosition(labelPosition);
+//     mi->addChild(lbl);
+//     return mi;
+// }
 ax::MenuItemSprite* MainMenu::getMenuItemSprite(Vec2 postiton, float scale, const char* labelText, Vec2 labelPosition)
 {
     auto mi = MenuItemSprite::create(Sprite::createWithSpriteFrameName("ButtonText_Small_Green_Square.png"),
@@ -76,16 +80,16 @@ ax::MenuItemSprite* MainMenu::getMenuItemSprite(Vec2 postiton,
     mi->setCallback(callback);
     return mi;
 }
-ax::MenuItemImage* MainMenu::getMenuItem(Vec2 postiton,
-                                         float scale,
-                                         const char* labelText,
-                                         Vec2 labelPosition,
-                                         const ax::ccMenuCallback& callback)
-{
-    auto mi = getMenuItem(postiton, scale, labelText, labelPosition);
-    mi->setCallback(callback);
-    return mi;
-}
+// ax::MenuItemImage* MainMenu::getMenuItem(Vec2 postiton,
+//                                          float scale,
+//                                          const char* labelText,
+//                                          Vec2 labelPosition,
+//                                          const ax::ccMenuCallback& callback)
+// {
+//     auto mi = getMenuItem(postiton, scale, labelText, labelPosition);
+//     mi->setCallback(callback);
+//     return mi;
+// }
 
 ax::Vector<ax::MenuItem*> MainMenu::getMenuItems()
 {
@@ -254,6 +258,19 @@ ax::Vector<ax::MenuItem*> MainMenu::getMenuItems()
         Director::getInstance()->pushScene(audioScene);
     }));
     
+    // row 5
+    menuItems.pushBack(getMenuItemSprite(miStartPosition + Vec2(xMove * 0, yMove * 5), miScale, "Csv High Scores",
+                                         lblPosition, [&](ax::Object*) {
+        AXLOG("High Scores Scene!");
+        auto scene = utils::createInstance<CsvHighScoreScene>();
+        Director::getInstance()->pushScene(scene);
+    }));
+    menuItems.pushBack(getMenuItemSprite(miStartPosition + Vec2(xMove * 1, yMove * 5), miScale, "Sqlite High Scores",
+                                         lblPosition, [&](ax::Object*) {
+        AXLOG("High Scores Scene!");
+        auto scene = utils::createInstance<SqliteHighScoreScene>();
+        Director::getInstance()->pushScene(scene);
+    }));
 
     return menuItems;
 }

@@ -1,10 +1,10 @@
 #ifndef _ACTION_SPRITE_SCENE_HPP
 #define _ACTION_SPRITE_SCENE_HPP
 
-#include "axmol.h"
+#include "../Scenes/TemplateScene.hpp"
 #include <string>
 
-class ActionSpriteScene : public ax::Scene
+class ActionSpriteScene : public TemplateScene
 {
 public:
     bool init() override;

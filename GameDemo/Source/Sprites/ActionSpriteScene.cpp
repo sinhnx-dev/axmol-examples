@@ -6,16 +6,12 @@ bool ActionSpriteScene::init()
 {
     //////////////////////////////
     // 1. super init first
-    if (!Scene::init())
+    if (!TemplateScene::init())
     {
         return false;
     }
-
-    auto visibleSize = _director->getVisibleSize();
-    auto origin      = _director->getVisibleOrigin();
-    auto safeArea    = _director->getSafeAreaRect();
-    auto safeOrigin  = safeArea.origin;
-
+    SetTitle("Sprite Action");
+    
     auto sprite1 = createSprite("Move by", Vec2(100, visibleSize.height - 50));
     this->addChild(sprite1);
     // Move a sprite 100 pixels to the right & 10 pixels to the top over 2 seconds

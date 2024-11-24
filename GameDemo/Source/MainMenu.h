@@ -10,12 +10,12 @@ public:
 
 private:
     ax::Vector<ax::MenuItem*> getMenuItems();
-    ax::MenuItemImage* getMenuItem(ax::Vec2 postiton, float scale, const char* labelText, ax::Vec2 labelPosition);
-    ax::MenuItemImage* getMenuItem(ax::Vec2 postiton,
-                                   float scale,
-                                   const char* labelText,
-                                   ax::Vec2 labelPosition,
-                                   const ax::ccMenuCallback& callback);
+    // ax::MenuItemImage* getMenuItem(ax::Vec2 postiton, float scale, const char* labelText, ax::Vec2 labelPosition);
+    // ax::MenuItemImage* getMenuItem(ax::Vec2 postiton,
+    //                                float scale,
+    //                                const char* labelText,
+    //                                ax::Vec2 labelPosition,
+    //                                const ax::ccMenuCallback& callback);
     ax::MenuItemSprite* getMenuItemSprite(ax::Vec2 postiton,
                                           float scale,
                                           const char* labelText,
