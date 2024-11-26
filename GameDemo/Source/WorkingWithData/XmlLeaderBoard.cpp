@@ -3,15 +3,15 @@
 using namespace std;
 using namespace pugi;
 
-XmlLeaderBoard::XmlLeaderBoard(std::string filePath)
+XmlLeaderBoard::XmlLeaderBoard(std::string filePath) : PlayerHighScore(filePath)
 {
-    this->filePath = filePath;
-    parse_result   = doc.load_file(filePath.c_str());
+    parse_result = doc.load_file(filePath.c_str());
     if (parse_result)
     {
         cout << "Load result: " << parse_result.description() << endl;
         cout << "Status: " << parse_result.status << endl;
         cout << "Encoding: " << parse_result.encoding << endl;
+        loadLeaderBoard();
     }
     else
     {
@@ -25,7 +25,7 @@ XmlLeaderBoard::XmlLeaderBoard(std::string filePath)
 
 vector<Player> XmlLeaderBoard::loadLeaderBoard()
 {
-    vector<Player> players = vector<Player>();
+    _players = vector<Player>();
     if (parse_result)
     {
         xml_node leaderBoard = doc.first_child();
@@ -34,21 +34,10 @@ vector<Player> XmlLeaderBoard::loadLeaderBoard()
             Player p;
             p.name  = player.attribute("name").as_string();
             p.score = player.attribute("scores").as_int();
-            players.push_back(p);
+            _players.push_back(p);
         }
     }
-    return players;
-}
-
-bool XmlLeaderBoard::insertLeaderBoard(Player p)
-{
-    xml_node leaderBoard                     = doc.first_child();
-    xml_node newPlayerNode                   = leaderBoard.append_child("Player");
-    newPlayerNode.append_attribute("name")   = p.name;
-    newPlayerNode.append_attribute("scores") = p.score;
-    doc.save(cout);
-    isUpdate = true;
-    return true;
+    return _players;
 }
 bool XmlLeaderBoard::saveToFile(std::vector<Player> players)
 {
@@ -61,12 +50,12 @@ bool XmlLeaderBoard::saveToFile(std::vector<Player> players)
         newPlayerNode.append_attribute("scores") = p.score;
     }
     // doc.save(cout);
-    doc.save_file(filePath.c_str());
-    isUpdate = false;
+    doc.save_file(_filePath.c_str());
+    _isUpdate = false;
     return false;
 }
 XmlLeaderBoard::~XmlLeaderBoard()
 {
-    if (isUpdate)
-        doc.save_file(filePath.c_str());
+    if (_isUpdate)
+        saveToFile(_players);
 }

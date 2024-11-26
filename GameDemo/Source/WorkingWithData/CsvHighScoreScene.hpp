@@ -8,6 +8,7 @@ class CsvHighScoreScene : public HighScoreScene
 {
 public:
     bool init() override;
+
 private:
 };
 

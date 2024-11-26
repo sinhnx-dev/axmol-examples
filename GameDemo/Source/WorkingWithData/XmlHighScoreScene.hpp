@@ -8,6 +8,7 @@ class XmlHighScoreScene : public HighScoreScene
 {
 public:
     bool init() override;
+
 private:
 };
 

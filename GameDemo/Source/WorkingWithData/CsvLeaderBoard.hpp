@@ -9,11 +9,8 @@ class CsvLeaderBoard : public PlayerHighScore
 public:
     CsvLeaderBoard(std::string filePath);
     ~CsvLeaderBoard();
-    // std::vector<Player> GetPlayersHighScore() override;
-    // bool AddPlayerHighScore(Player player) override;
 
 private:
-    
 };
 
 #endif  // _PLAYER_CSV_FILE_HPP

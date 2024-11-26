@@ -15,11 +15,9 @@ bool XmlHighScoreScene::init()
 
     SetTitle("XML Leader Board");
 
-    XmlLeaderBoard xml = XmlLeaderBoard("res/data/LeaderBoard.xml");
-    std::vector<Player> players = xml.loadLeaderBoard();
+    XmlLeaderBoard xml          = XmlLeaderBoard("res/data/LeaderBoard.xml");
+    xml.AddPlayerHighScore(Player{"sinhnx", 80});
+    std::vector<Player> players = xml.GetPlayersHighScore();
     ShowHighScore(players);
-    players.push_back(Player{"sinhnx", 50});
-    std::sort(players.begin(), players.end(), PlayerHighScore::HighScoreCmp);
-    xml.saveToFile(players);
     return true;
 }

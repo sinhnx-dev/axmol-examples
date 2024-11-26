@@ -3,20 +3,19 @@
 
 #include "axmol.h"
 #include "3rdparty/pugixml/pugixml.hpp"
+#include "PlayerHighScore.hpp"
 #include "Player.h"
-class XmlLeaderBoard
+class XmlLeaderBoard : public PlayerHighScore
 {
 private:
-    std::string filePath;
     pugi::xml_document doc;
     pugi::xml_parse_result parse_result;
-    bool isUpdate;
+    std::vector<Player> loadLeaderBoard();
+    bool saveToFile(std::vector<Player> players);
+
 public:
     XmlLeaderBoard(std::string filePath);
     ~XmlLeaderBoard();
-    bool insertLeaderBoard(Player u);
-    std::vector<Player> loadLeaderBoard();
-    bool saveToFile(std::vector<Player> players);
 };
 
 #endif  // _XML_LEADER_BOARD_HPP_
