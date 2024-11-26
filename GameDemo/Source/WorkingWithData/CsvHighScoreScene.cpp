@@ -1,5 +1,5 @@
 #include "CsvHighScoreScene.hpp"
-#include "PlayerCsvFile.hpp"
+#include "CsvLeaderBoard.hpp"
 
 // USING_NS_AX;
 
@@ -12,13 +12,13 @@ bool CsvHighScoreScene::init()
         return false;
     }
 
-    SetTitle("Leader Board");
-    PlayerCsvFile csv = PlayerCsvFile("res/data/users.csv");
-    csv.AddPlayerHighScore(Player{"abc", 90});
+    SetTitle("CSV Leader Board");
+    CsvLeaderBoard csv = CsvLeaderBoard("res/data/LeaderBoard.csv");
+    csv.AddPlayerHighScore(Player{"abc", 100});
     ShowHighScore(csv.GetPlayersHighScore());
 
     std::string sbuf;
-    ax::FileUtils::getInstance()->getContents("res/data/users.csv", &sbuf);
+    ax::FileUtils::getInstance()->getContents("res/data/LeaderBoard.csv", &sbuf);
     AXLOG("%s", sbuf.c_str());
 
     return true;

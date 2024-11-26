@@ -3,13 +3,12 @@
 #include <vector>
 #include <fstream>
 #include <iostream>
-#include "PlayerCsvFile.hpp"
+#include "CsvLeaderBoard.hpp"
 
 using namespace std;
 
-PlayerCsvFile::PlayerCsvFile(std::string filePath)
+CsvLeaderBoard::CsvLeaderBoard(std::string filePath) : PlayerHighScore(filePath)
 {
-    _filePath = filePath;
     // Open the file using ifstream
     ifstream file(_filePath);
     // confirm file opening
@@ -40,44 +39,13 @@ PlayerCsvFile::PlayerCsvFile(std::string filePath)
                 _players.push_back(user);
             }
         }
-        std::sort(_players.begin(), _players.end(), PlayerCsvFile::highScoreCmp);
+        std::sort(_players.begin(), _players.end(), PlayerHighScore::HighScoreCmp);
         // Close the file
         file.close();
     }
 }
-std::vector<std::string> PlayerCsvFile::Split(std::string str, std::string regexStr)
-{
-    std::vector<std::string> v;
-    std::regex re(regexStr);
-    std::regex_token_iterator<std::string::iterator> d(str.begin(), str.end(), re, -1);
-    // default constructor = end-of-sequence:
-    std::regex_token_iterator<std::string::iterator> rend;
-    while (d != rend)
-        v.push_back(std::string(*d++));
-    return v;
-}
-std::vector<Player> PlayerCsvFile::GetPlayersHighScore()
-{
-    return _players;
-}
 
-bool PlayerCsvFile::AddPlayerHighScore(Player player)
-{
-    int size = _players.size();
-    if (size < 10 || _players.at(size - 1).score < player.score)
-    {
-        _players.push_back(player);
-        _isUpdate = true;
-    }
-    std::sort(_players.begin(), _players.end(), PlayerCsvFile::highScoreCmp);
-    if (_players.size() > 10)
-    {
-        _players.pop_back();
-    }
-    return _isUpdate;
-}
-
-PlayerCsvFile::~PlayerCsvFile()
+CsvLeaderBoard::~CsvLeaderBoard()
 {
     cout << "destroy PlayerCsvFile..." << endl;
     if (_isUpdate)
@@ -100,8 +68,4 @@ PlayerCsvFile::~PlayerCsvFile()
             cout << "Players has been written to the csv file." << endl;
         }
     }
-}
-bool PlayerCsvFile::highScoreCmp(Player p1, Player p2)
-{
-    return p1.score > p2.score;
 }

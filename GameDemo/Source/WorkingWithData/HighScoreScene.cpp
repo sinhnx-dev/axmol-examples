@@ -1,9 +1,5 @@
 #include "HighScoreScene.hpp"
 #include "../PopSceneMenu.hpp"
-#include "PlayerCsvFile.hpp"
-#include <regex>
-#include <string>
-#include <vector>
 
 USING_NS_AX;
 

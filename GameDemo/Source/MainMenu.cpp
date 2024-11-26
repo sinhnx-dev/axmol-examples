@@ -32,6 +32,8 @@
 #include "WorkingWithData/HighScoreScene.hpp"
 #include "WorkingWithData/CsvHighScoreScene.hpp"
 #include "WorkingWithData/SqliteHighScoreScene.hpp"
+#include "WorkingWithData/XmlHighScoreScene.hpp"
+#include "WorkingWithData/JsonHighScoreScene.hpp"
 
 
 USING_NS_AX;
@@ -261,14 +263,26 @@ ax::Vector<ax::MenuItem*> MainMenu::getMenuItems()
     // row 5
     menuItems.pushBack(getMenuItemSprite(miStartPosition + Vec2(xMove * 0, yMove * 5), miScale, "Csv High Scores",
                                          lblPosition, [&](ax::Object*) {
-        AXLOG("High Scores Scene!");
+        AXLOG("Csv High Scores Scene!");
         auto scene = utils::createInstance<CsvHighScoreScene>();
         Director::getInstance()->pushScene(scene);
     }));
     menuItems.pushBack(getMenuItemSprite(miStartPosition + Vec2(xMove * 1, yMove * 5), miScale, "Sqlite High Scores",
                                          lblPosition, [&](ax::Object*) {
-        AXLOG("High Scores Scene!");
+        AXLOG("SQLite High Scores Scene!");
         auto scene = utils::createInstance<SqliteHighScoreScene>();
+        Director::getInstance()->pushScene(scene);
+    }));
+    menuItems.pushBack(getMenuItemSprite(miStartPosition + Vec2(xMove * 2, yMove * 5), miScale, "XML High Scores",
+                                         lblPosition, [&](ax::Object*) {
+        AXLOG("XML High Scores Scene!");
+        auto scene = utils::createInstance<XmlHighScoreScene>();
+        Director::getInstance()->pushScene(scene);
+    }));
+    menuItems.pushBack(getMenuItemSprite(miStartPosition + Vec2(xMove * 3, yMove * 5), miScale, "JSON High Scores",
+                                         lblPosition, [&](ax::Object*) {
+        AXLOG("JSON High Scores Scene!");
+        auto scene = utils::createInstance<JsonHighScoreScene>();
         Director::getInstance()->pushScene(scene);
     }));
 

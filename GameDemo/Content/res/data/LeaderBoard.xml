@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<LeaderBoard>
+    <Player name="sinhnx1" scores="10"></Player>
+    <Player name="sinhnx2" scores="11" />
+    <Player name="sinhnx3" scores="12" />
+</LeaderBoard>
