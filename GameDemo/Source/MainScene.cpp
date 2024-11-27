@@ -279,27 +279,5 @@ void MainScene::update(float delta)
 
 void MainScene::menuCloseCallback(ax::Object* sender)
 {
-    // auto pauseLayer = PauseMenuLayer::create();
-    // auto pauseLayer = utils::createInstance<PauseMenuLayer>();
-    // this->addChild(pauseLayer, 100);
-    // auto layer = LayerColor::create(Color4B::WHITE);
-    // auto audioBox = Sprite::createWithSpriteFrameName("Box_Blue_Rounded.png");
-
-    // audioBox->setPosition(origin.x + visibleSize.x / 2,origin.y + visibleSize.y/2);
-    // audioBox->setScale(0.5);
-    // layer->addChild(audioBox);
-    // this->addChild(layer);
-    // log("add color layer");
-
     _director->end();
-    // AXLOG("Scene Demo!");
-    // auto firstScene = utils::createInstance<FirstScene>();
-    // _director->pushScene(firstScene);
-
-    /*To navigate back to native iOS screen(if present) without quitting the application  ,do not use
-     * _director->end() as given above,instead trigger a custom event created in RootViewController.mm
-     * as below*/
-
-    // EventCustom customEndEvent("game_scene_close_event");
-    //_eventDispatcher->dispatchEvent(&customEndEvent);
 }
