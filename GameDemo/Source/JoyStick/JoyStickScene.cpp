@@ -1,8 +1,8 @@
-#include "JoyStickScene.hpp"
+#include "JoystickScene.hpp"
 
 USING_NS_AX;
 
-bool JoyStickScene::init()
+bool JoystickScene::init()
 {
     //////////////////////////////
     // 1. super init first
@@ -24,7 +24,7 @@ bool JoyStickScene::init()
 
     return true;
 }
-void JoyStickScene::update(float dt)
+void JoystickScene::update(float dt)
 {
     if (this->joystick->getIsActive())
     {

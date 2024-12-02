@@ -5,7 +5,7 @@
 #include "Joystick.hpp"
 #include "../Scenes/TemplateScene.hpp"
 
-class JoyStickScene : public TemplateScene
+class JoystickScene : public TemplateScene
 {
 public:
     bool init() override;

@@ -35,7 +35,7 @@
 #include "WorkingWithData/XmlHighScoreScene.hpp"
 #include "WorkingWithData/JsonHighScoreScene.hpp"
 
-#include "JoyStick/JoyStickScene.hpp"
+#include "Joystick/JoystickScene.hpp"
 
 USING_NS_AX;
 
@@ -263,7 +263,7 @@ ax::Vector<ax::MenuItem*> MainMenu::getMenuItems()
     menuItems.pushBack(getMenuItemSprite(miStartPosition + Vec2(xMove * 1, yMove * 4), miScale, "Joystick",
                                          lblPosition, [&](ax::Object*) {
         AXLOG("JoyStick Scene !");
-        auto scene = utils::createInstance<JoyStickScene>();
+        auto scene = utils::createInstance<JoystickScene>();
         Director::getInstance()->pushScene(scene);
     }));
     
