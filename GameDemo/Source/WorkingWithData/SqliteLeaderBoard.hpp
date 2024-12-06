@@ -3,6 +3,8 @@
 
 #include "sqlite3/sqlite3.h"
 #include "Player.h"
+#include <vector>
+#include <string>
 
 class SqliteLeaderBoard
 {

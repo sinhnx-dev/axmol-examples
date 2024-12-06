@@ -1,6 +1,8 @@
 #include "HighScoreScene.hpp"
 #include "../PopSceneMenu.hpp"
 
+#include <vector>
+#include <string>
 USING_NS_AX;
 
 bool HighScoreScene::init()

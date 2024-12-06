@@ -5,6 +5,9 @@
 #include "3rdparty/pugixml/pugixml.hpp"
 #include "PlayerHighScore.hpp"
 #include "Player.h"
+#include <vector>
+#include <string>
+
 class XmlLeaderBoard : public PlayerHighScore
 {
 private:

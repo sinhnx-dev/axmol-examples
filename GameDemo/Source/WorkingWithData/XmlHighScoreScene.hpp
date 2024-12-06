@@ -3,6 +3,8 @@
 
 #include "HighScoreScene.hpp"
 #include "Player.h"
+#include <vector>
+#include <string>
 
 class XmlHighScoreScene : public HighScoreScene
 {

@@ -17,7 +17,9 @@ bool GameInfoLayer::init()
         origin.x + _label->getContentSize().height / 2 + margin));
 
     this->addChild(_label);
+    return true;
   }
+  return false;
 }
 void GameInfoLayer::numCollectedChanged(int numCollected)
 {

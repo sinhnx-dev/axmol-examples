@@ -3,6 +3,8 @@
 
 #include "Player.h"
 #include "PlayerHighScore.hpp"
+#include <vector>
+#include <string>
 
 class CsvLeaderBoard : public PlayerHighScore
 {

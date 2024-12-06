@@ -2,6 +2,8 @@
 #define _PLAYER_HIGH_SCORE_HPP_
 
 #include "Player.h"
+#include <vector>
+#include <string>
 
 class PlayerHighScore
 {

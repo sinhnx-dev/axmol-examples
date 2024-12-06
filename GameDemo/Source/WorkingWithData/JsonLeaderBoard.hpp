@@ -1,6 +1,8 @@
 #ifndef _JSON_LEADER_BOARD_HPP_
 #define _JSON_LEADER_BOARD_HPP_
 
+#include <vector>
+#include <string>
 #include "3rdparty/rapidjson/document.h"
 #include "3rdparty/rapidjson/writer.h"
 #include "3rdparty/rapidjson/stringbuffer.h"
