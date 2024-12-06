@@ -2,6 +2,7 @@
 #define _PLAYER_STRUCT_DEFINE
 
 #include <iostream>
+#include <string>
 
 struct Player
 {
