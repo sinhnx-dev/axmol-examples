@@ -1,5 +1,5 @@
 #include "SqliteLeaderBoard.hpp"
-
+#include "axmol.h"
 using namespace std;
 
 SqliteLeaderBoard::SqliteLeaderBoard(string& dbName)
@@ -10,8 +10,8 @@ SqliteLeaderBoard::SqliteLeaderBoard(string& dbName)
 
 bool SqliteLeaderBoard::createDb(string& dbName)
 {
-    std::string dbPath = "res/data/" + dbName;
-    // std::string dbPath = ax::FileUtils::getInstance()->getWritablePath() + dbName;
+    // std::string dbPath = "res/data/" + dbName;
+    std::string dbPath = ax::FileUtils::getInstance()->getWritablePath() + dbName;
     printf("%s\n", dbPath.c_str());
     int result = sqlite3_open(dbPath.c_str(), &pdb);
 

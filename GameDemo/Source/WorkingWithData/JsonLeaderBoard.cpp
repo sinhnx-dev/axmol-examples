@@ -4,7 +4,15 @@ using namespace std;
 
 JsonLeaderBoard::JsonLeaderBoard(std::string filePath) : PlayerHighScore(filePath)
 {
-    loadLeaderBoard();
+    AXLOG("path: %s", _filePath.c_str());
+    if (ax::FileUtils::getInstance()->isFileExist(_filePath))
+    {
+        loadLeaderBoard();
+    }
+    else
+    {
+        _players = vector<Player>();
+    }
 }
 
 vector<Player> JsonLeaderBoard::loadLeaderBoard()
