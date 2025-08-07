@@ -1,7 +1,8 @@
 #include "CsvHighScoreScene.hpp"
 #include "CsvLeaderBoard.hpp"
+#include "axmol.h"
 
-// USING_NS_AX;
+USING_NS_AX;
 
 bool CsvHighScoreScene::init()
 {
@@ -13,7 +14,8 @@ bool CsvHighScoreScene::init()
     }
 
     SetTitle("CSV Leader Board");
-    CsvLeaderBoard csv = CsvLeaderBoard("res/data/LeaderBoard.csv");
+    // CsvLeaderBoard csv = CsvLeaderBoard("res/data/LeaderBoard.csv");
+    CsvLeaderBoard csv = CsvLeaderBoard(FileUtils::getInstance()->getWritablePath() + "LeaderBoard.csv");
     csv.AddPlayerHighScore(Player{"abc", 100});
     ShowHighScore(csv.GetPlayersHighScore());
 

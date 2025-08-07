@@ -1,7 +1,8 @@
 #include "JsonHighScoreScene.hpp"
 #include "JsonLeaderBoard.hpp"
+#include "axmol.h"
 
-// USING_NS_AX;
+USING_NS_AX;
 
 bool JsonHighScoreScene::init()
 {
@@ -13,7 +14,8 @@ bool JsonHighScoreScene::init()
     }
 
     SetTitle("JSON Leader Board");
-    JsonLeaderBoard json = JsonLeaderBoard("res/data/LeaderBoard.json");
+    // JsonLeaderBoard json = JsonLeaderBoard("res/data/LeaderBoard.json");
+    JsonLeaderBoard json = JsonLeaderBoard(FileUtils::getInstance()->getWritablePath() + "LeaderBoard.json");
     json.AddPlayerHighScore(Player{"abc", 100});
     ShowHighScore(json.GetPlayersHighScore());
 
