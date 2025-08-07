@@ -35,7 +35,7 @@
 
 # The follow options are set individually - default: OFF
 # set(AX_ENABLE_EXT_LIVE2D OFF CACHE BOOL "Build extension Live2D" FORCE)
-# set(AX_ENABLE_EXT_EFFEKSEER OFF CACHE BOOL "Build extension Effekseer" FORCE)
+set(AX_ENABLE_EXT_EFFEKSEER ON CACHE BOOL "Build extension Effekseer" FORCE)
 
 # Code modules that can be disabled - default: ON
 # set(AX_ENABLE_AUDIO ON CACHE BOOL "Build audio support" FORCE)

@@ -1,7 +1,7 @@
 #ifndef _ACTION_SPRITE_SCENE_HPP
 #define _ACTION_SPRITE_SCENE_HPP
 
-#include "../Scenes/TemplateScene.hpp"
+#include "Scenes/TemplateScene.hpp"
 #include <string>
 
 class ActionSpriteScene : public TemplateScene

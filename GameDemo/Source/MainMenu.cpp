@@ -191,37 +191,36 @@ ax::Vector<ax::MenuItem*> MainMenu::getMenuItems()
         auto scene = utils::createInstance<PraticleToolScene>();
         Director::getInstance()->pushScene(TransitionZoomFlipY::create(2, scene));
     }));
-    menuItems.pushBack(getMenuItemSprite(miStartPosition + Vec2(xMove * 4, yMove * 1), miScale, "Parallax Infinite", lblPosition,
+    menuItems.pushBack(getMenuItemSprite(miStartPosition + Vec2(xMove * 4, yMove * 1), miScale, "Effekseer Praticle", lblPosition,
+                                         [&](ax::Object*) {
+        AXLOG("Effekseer Praticle Scene !");
+        auto scene = utils::createInstance<EffekseerPraticleScene>();
+        Director::getInstance()->pushScene(scene);
+    }));
+
+    //menu item row 2
+    menuItems.pushBack(getMenuItemSprite(miStartPosition + Vec2(xMove * 0, yMove * 2), miScale, "Parallax Infinite", lblPosition,
                                          [&](ax::Object*) {
         AXLOG("ParallaxInfiniteScene Scene !");
         auto scene = utils::createInstance<ParallaxInfiniteScene>();
         Director::getInstance()->pushScene(scene);
     }));
-
-    //menu item row 2
-    menuItems.pushBack(getMenuItemSprite(miStartPosition + Vec2(xMove * 0, yMove * 2), miScale, "ParalaxNode", lblPosition,
+    menuItems.pushBack(getMenuItemSprite(miStartPosition + Vec2(xMove * 1, yMove * 2), miScale, "ParalaxNode", lblPosition,
                                          [&](ax::Object*) {
         AXLOG("ParalaxNode !");
         auto scene = utils::createInstance<ParallaxNodeScene>();
         Director::getInstance()->pushScene(scene);
     }));
-    menuItems.pushBack(getMenuItemSprite(miStartPosition + Vec2(xMove * 1, yMove * 2), miScale, "Tile Map", lblPosition,
+    
+    menuItems.pushBack(getMenuItemSprite(miStartPosition + Vec2(xMove * 2, yMove * 2), miScale, "Tile Map", lblPosition,
                                          [&](ax::Object*) {
         AXLOG("Tile Map Scene !");
-        // auto scene = utils::createInstance<TileMapScene>();
         auto scene = utils::createInstance<TinySkiMapScene>();
         Director::getInstance()->pushScene(scene);
     }));
-    
-    menuItems.pushBack(getMenuItemSprite(miStartPosition + Vec2(xMove * 2, yMove * 2), miScale, "Video Player", lblPosition,
+    menuItems.pushBack(getMenuItemSprite(miStartPosition + Vec2(xMove * 3, yMove * 2), miScale, "Video Player", lblPosition,
                                          [&](ax::Object*) {
         AXLOG("VideoPlayer Scene !");
-        auto scene = utils::createInstance<VideoPlayerScene>();
-        Director::getInstance()->pushScene(scene);
-    }));
-    menuItems.pushBack(getMenuItemSprite(miStartPosition + Vec2(xMove * 3, yMove * 2), miScale, "???", lblPosition,
-                                         [&](ax::Object*) {
-        AXLOG("?? Scene !");
         auto scene = utils::createInstance<VideoPlayerScene>();
         Director::getInstance()->pushScene(scene);
     }));

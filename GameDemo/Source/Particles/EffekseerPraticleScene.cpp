@@ -7,68 +7,69 @@ bool EffekseerPraticleScene::init()
 {
     //////////////////////////////
     // 1. super init first
-    if (!Scene::init())
+    if (!TemplateScene::init())
     {
         return false;
     }
+    SetTitle("Effekseer Praticle");
 
-    auto visibleSize = _director->getVisibleSize();
-    auto origin      = _director->getVisibleOrigin();
-    auto safeArea    = _director->getSafeAreaRect();
-    auto safeOrigin  = safeArea.origin;
+    scheduleUpdate();
 
-    auto menu = utils::createInstance<PopSceneMenu>();
-    if (menu != nullptr)
-    {
-        this->addChild(menu, 1);
-    }
-    else
-    {
-        AXLOG("Menu init error!");
-    }
+    manager = efk::EffectManager::create(Director::getInstance()->getVisibleSize());
 
-    // manager = Effekseer::EffectFactory
     return true;
 }
 
-void EffekseerPraticleScene::update(float delta) {
-    // Effect1
-	// if (count % 300 == 0)
-	// {
-	// 	/**
-	// 		拡大率を指定してエフェクトファイルを読み込みます。
+void EffekseerPraticleScene::update(float delta)
+{
+    if (count % 300 == 0)
+    {
+        auto effect = efk::Effect::create("res/Praticles/Laser01.efk", 20.0f);
+        if (effect != nullptr)
+        {
+            auto emitter = efk::EffectEmitter::create(manager);
+            emitter->setEffect(effect);
+            emitter->setPlayOnEnter(true);
 
-	// 		You read an effect file with specifying scale.
+            emitter->setRotation3D(ax::Vec3(0, 90, 0));
+            emitter->setPosition(Vec2(320, 150));
 
-	// 		您通過指定比例讀取效果文件。
+            // emitter->setScale(13);
+            this->addChild(emitter, 0);
+        }
+    }
+	// Effect2
+	if (count % 300 == 120)
+	{
+		auto effect = efk::Effect::create("res/Praticles/Homing_Laser01.efk");
+		if (effect != nullptr)
+		{
+			auto emitter = efk::EffectEmitter::create(manager);
+			emitter->setEffect(effect);
+			emitter->setPlayOnEnter(true);
 
-	// 		您通过指定比例读取效果文件。
-	// 	*/
-	// 	auto effect = Effekseer::Effect::create("res/Praticles/Laser01.efk", 13.0f);
-	// 	if (effect != nullptr)
-	// 	{
-	// 		/**
-	// 			エミッターを生成し、パラメーターを設定してレイヤーに追加します。
+			emitter->setPosition(Vec2(320, 150));
+			emitter->setScale(4);
+			this->addChild(emitter, 0);
+			emitter->setTargetPosition(ax::Vec3(320, 480, 0));
+		}
+	}
+    manager->update();
+    count++;
+}
 
-	// 			You generate an emitter, set parameters and add it to the layer.
+EffekseerPraticleScene::~EffekseerPraticleScene()
+{
+    if (manager)
+    {
+        manager->release();
+        manager = nullptr;
+    }
+}
 
-	// 			您會生成一個發射極，並通過將參數添加到該層。
-
-	// 			您会生成一个发射极，并通过将参数添加到该层。
-	// 		*/
-
-	// 		auto emitter = Effekseer::EffectEmitter::create(manager);
-	// 		emitter->setEffect(effect);
-	// 		emitter->setPlayOnEnter(true);
-			
-	// 		emitter->setRotation3D(ax::Vec3(0, 90, 0));
-	// 		emitter->setPosition(Vec2(320, 150));
-			
-	// 		// emitter->setScale(13);
-	// 		this->addChild(emitter, 0);
-
-	// 		// No need (because it uses autorelease after 1.41)
-	// 		//effect->release();
-	// 	}
-	// }
+void EffekseerPraticleScene::visit(ax::Renderer *renderer, const ax::Mat4& parentTransform, uint32_t parentFlags)
+{
+	manager->begin(renderer, _globalZOrder);
+	ax::Scene::visit(renderer, parentTransform, parentFlags);
+	manager->end(renderer, _globalZOrder);
 }
