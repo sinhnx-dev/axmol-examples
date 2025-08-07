@@ -119,7 +119,7 @@ bool EventDispatchScene::init()
     }
     return true;
 }
-void EventDispatchScene::onMouseDown(Event* event)
+bool EventDispatchScene::onMouseDown(Event* event)
 {
     // to illustrate the event....
     EventMouse* e = (EventMouse*)event;
@@ -127,24 +127,26 @@ void EventDispatchScene::onMouseDown(Event* event)
     _lblMouseInfo->setString("Mouse Event: onMouseDown");
 }
 
-void EventDispatchScene::onMouseUp(Event* event)
+bool EventDispatchScene::onMouseUp(Event* event)
 {
     // to illustrate the event....
     EventMouse* e = (EventMouse*)event;
     AXLOG("Mouse Up detected");
 
     _lblMouseInfo->setString("Mouse Event: onMouseUp");
+    return true;  // if you are consuming it
 }
 
-void EventDispatchScene::onMouseMove(Event* event)
+bool EventDispatchScene::onMouseMove(Event* event)
 {
     // to illustrate the event....
     EventMouse* e = (EventMouse*)event;
     AXLOG("Mouse move detected with position: x: %f, y: %f", e->getLocation().x, e->getLocation().y);
     _lblMouseInfo->setString("Mouse Event: onMouseMove");
+    return true;  // if you are consuming it
 }
 
-void EventDispatchScene::onMouseScroll(Event* event)
+bool EventDispatchScene::onMouseScroll(Event* event)
 {
     // to illustrate the event....
     EventMouse* e = (EventMouse*)event;
@@ -159,4 +161,5 @@ void EventDispatchScene::onMouseScroll(Event* event)
     EventCustom cevent("game_custom_event1");
     cevent.setUserData(buf);
     _eventDispatcher->dispatchEvent(&cevent);
+    return true;  // if you are consuming it
 }

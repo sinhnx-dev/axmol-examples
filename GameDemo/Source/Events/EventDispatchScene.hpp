@@ -9,10 +9,10 @@ public:
     bool init() override;
 
     // Mouse Events
-    void onMouseDown(ax::Event* event);
-    void onMouseUp(ax::Event* event);
-    void onMouseMove(ax::Event* event);
-    void onMouseScroll(ax::Event* event);
+    bool onMouseDown(ax::Event* event);
+    bool onMouseUp(ax::Event* event);
+    bool onMouseMove(ax::Event* event);
+    bool onMouseScroll(ax::Event* event);
 private:
     ax::Label* _lblMouseInfo;
 };
