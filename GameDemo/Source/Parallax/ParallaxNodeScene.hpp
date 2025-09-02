@@ -2,8 +2,9 @@
 #define _PARALLAX_NODE_SCENE_HPP
 
 #include "axmol.h"
+#include "Scenes/TemplateScene.hpp"
 
-class ParallaxNodeScene : public ax::Scene
+class ParallaxNodeScene : public TemplateScene
 {
 public:
     bool init() override;

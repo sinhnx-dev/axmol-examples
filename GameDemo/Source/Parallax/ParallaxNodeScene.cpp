@@ -1,5 +1,4 @@
 #include "ParallaxNodeScene.hpp"
-#include "../PopSceneMenu.hpp"
 
 USING_NS_AX;
 
@@ -7,25 +6,16 @@ bool ParallaxNodeScene::init()
 {
     //////////////////////////////
     // 1. super init first
-    if (!Scene::init())
+    if (!TemplateScene::init())
     {
         return false;
     }
+    setTitle("Parallax Node");
 
     auto visibleSize = _director->getVisibleSize();
     auto origin      = _director->getVisibleOrigin();
     auto safeArea    = _director->getSafeAreaRect();
     auto safeOrigin  = safeArea.origin;
-
-    auto menu = utils::createInstance<PopSceneMenu>();
-    if (menu != nullptr)
-    {
-        this->addChild(menu, 1);
-    }
-    else
-    {
-        AXLOG("Menu init error!");
-    }
 
     
     setParallaxNode();

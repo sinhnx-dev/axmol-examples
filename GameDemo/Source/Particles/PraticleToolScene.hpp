@@ -2,8 +2,9 @@
 #define _PARTICLE_TOOL_SCENE_HPP
 
 #include "axmol.h"
+#include "Scenes/TemplateScene.hpp"
 
-class PraticleToolScene : public ax::Scene
+class PraticleToolScene : public TemplateScene
 {
 public:
     bool init() override;

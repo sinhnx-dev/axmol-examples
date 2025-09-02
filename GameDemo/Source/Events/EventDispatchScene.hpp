@@ -2,8 +2,9 @@
 #define _EVENT_DISPATCH_SCENE_HPP
 
 #include "axmol.h"
+#include "Scenes/TemplateScene.hpp"
 
-class EventDispatchScene : public ax::Scene
+class EventDispatchScene : public TemplateScene
 {
 public:
     bool init() override;

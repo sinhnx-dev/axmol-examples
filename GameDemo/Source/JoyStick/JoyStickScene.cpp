@@ -10,8 +10,7 @@ bool JoystickScene::init()
     {
         return false;
     }
-
-    SetTitle("JoyStick Demo");
+    setTitle("JoyStick Demo");
 
     this->joystick = Joystick::create(Vec2(150, 150));
     this->addChild(joystick);

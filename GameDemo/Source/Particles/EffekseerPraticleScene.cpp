@@ -1,5 +1,4 @@
 #include "EffekseerPraticleScene.hpp"
-#include "../PopSceneMenu.hpp"
 
 USING_NS_AX;
 
@@ -11,7 +10,7 @@ bool EffekseerPraticleScene::init()
     {
         return false;
     }
-    SetTitle("Effekseer Praticle");
+    setTitle("Effekseer Praticle");
 
     scheduleUpdate();
 
@@ -54,6 +53,22 @@ void EffekseerPraticleScene::update(float delta)
 			emitter->setTargetPosition(ax::Vec3(320, 480, 0));
 		}
 	}
+    if (count % 300 == 150)
+    {
+        auto effect = efk::Effect::create("res/Praticles/ex01-spread.efk", 20.0f);
+        if (effect != nullptr)
+        {
+            auto emitter = efk::EffectEmitter::create(manager);
+            emitter->setEffect(effect);
+            emitter->setPlayOnEnter(true);
+
+            emitter->setRotation3D(ax::Vec3(0, 90, 0));
+            emitter->setPosition(Vec2(320, 300));
+
+            emitter->setScale(3);
+            this->addChild(emitter, 0);
+        }
+    }
     manager->update();
     count++;
 }

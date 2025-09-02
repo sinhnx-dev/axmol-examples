@@ -2,9 +2,10 @@
 #define _LABEL_DEMO_SCENE_HPP
 
 #include "axmol.h"
+#include "Scenes/TemplateScene.hpp"
 
 
-class LabelDemoScene : public ax::Scene
+class LabelDemoScene : public TemplateScene
 {
 public:
     bool init() override;

@@ -1,25 +1,15 @@
 #include "ParallaxInfiniteScene.hpp"
-#include "../PopSceneMenu.hpp"
 
 USING_NS_AX;
 using namespace std;
 
 bool ParallaxInfiniteScene::init()
 {
-    if ( !Scene::init() )
+    if ( !TemplateScene::init() )
     {
         return false;
     }
-    
-    auto menu = utils::createInstance<PopSceneMenu>();
-    if (menu != nullptr)
-    {
-        this->addChild(menu, 1);
-    }
-    else
-    {
-        AXLOG("Menu init error!");
-    }
+    setTitle("Parallax Infinite Scene");
 
     // Max Speed
     m_speed = 100;

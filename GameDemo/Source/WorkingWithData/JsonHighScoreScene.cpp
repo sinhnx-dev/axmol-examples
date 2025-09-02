@@ -12,12 +12,12 @@ bool JsonHighScoreScene::init()
     {
         return false;
     }
-
-    SetTitle("JSON Leader Board");
+    setTitle("JSON Leader Board");
+    
     // JsonLeaderBoard json = JsonLeaderBoard("res/data/LeaderBoard.json");
     JsonLeaderBoard json = JsonLeaderBoard(FileUtils::getInstance()->getWritablePath() + "LeaderBoard.json");
     json.AddPlayerHighScore(Player{"abc", 100});
-    ShowHighScore(json.GetPlayersHighScore());
+    showHighScore(json.GetPlayersHighScore());
 
     std::string sbuf;
     ax::FileUtils::getInstance()->getContents("res/data/LeaderBoard.json", &sbuf);

@@ -1,5 +1,4 @@
 #include "UiComponentsScene.hpp"
-#include "../PopSceneMenu.hpp"
 
 USING_NS_AX;
 
@@ -7,10 +6,11 @@ bool UiComponentsScene::init()
 {
     //////////////////////////////
     // 1. super init first
-    if (!Scene::init())
+    if (!TemplateScene::init())
     {
         return false;
     }
+    setTitle("UI Components");
 
     auto visibleSize = _director->getVisibleSize();
     auto origin      = _director->getVisibleOrigin();
@@ -143,16 +143,6 @@ bool UiComponentsScene::init()
     richText->pushBackElement(re1);
     richText->pushBackElement(re2);
     this->addChild(richText);
-
-    auto menu = utils::createInstance<PopSceneMenu>();
-    if (menu != nullptr)
-    {
-        this->addChild(menu, 1);
-    }
-    else
-    {
-        AXLOG("Menu init error!");
-    }
 
     return true;
 }

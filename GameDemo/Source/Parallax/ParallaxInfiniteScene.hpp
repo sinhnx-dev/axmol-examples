@@ -3,10 +3,11 @@
 
 #include "axmol.h"
 #include "ParallaxInfiniteNode.hpp"
+#include "Scenes/TemplateScene.hpp"
 
 USING_NS_AX;
 
-class ParallaxInfiniteScene : public ax::Scene
+class ParallaxInfiniteScene : public TemplateScene
 {
     float m_speed;
 

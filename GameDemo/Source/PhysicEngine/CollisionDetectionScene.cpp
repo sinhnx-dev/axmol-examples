@@ -1,5 +1,5 @@
 #include "CollisionDetectionScene.hpp"
-#include "../PopSceneMenu.hpp"
+#include "Scenes/PopSceneMenu.hpp"
 
 USING_NS_AX;
 
@@ -66,6 +66,7 @@ bool CollisionDetectionScene::init()
     _eventDispatcher->addEventListenerWithSceneGraphPriority(contactListener, this);
     
     schedule(AX_SCHEDULE_SELECTOR(CollisionDetectionScene::tickAndAddSprite), 0.5f);
+    printf("visibleSize: %f, %f\n", visibleSize.width, visibleSize.height);
 
     return true;
 }
@@ -98,13 +99,14 @@ bool CollisionDetectionScene::onContactBegin(ax::PhysicsContact& contact)
 void CollisionDetectionScene::tickAndAddSprite(float dt)
 {
     auto s_centre = Vec2(visibleSize.width / 2, visibleSize.height / 2);
-    auto sprite   = addSpriteAtPosition(Vec2(s_centre.x + ax::random(-300, 300), s_centre.y + ax::random(-300, 300)));
+    auto sprite   = addSpriteAtPosition(Vec2(ax::random(-300, 300),ax::random(-300, 300)));
     auto physicsBody = sprite->getPhysicsBody();
-    physicsBody->setVelocity(Vec2(ax::random(-500, 500), ax::random(-500, 500)));
+    physicsBody->setVelocity(Vec2(ax::random(-300, 300), ax::random(-300, 300)));
     physicsBody->setContactTestBitmask(0xFFFFFFFF);
 }
 ax::Sprite* CollisionDetectionScene::addSpriteAtPosition(ax::Vec2 position)
 {
+    printf("position: %f, %f\n", position.x, position.y);
     ax::Sprite* sprite = Sprite::create("HelloWorld.png");
     sprite->setPosition(position);
     sprite->setScale(0.5);

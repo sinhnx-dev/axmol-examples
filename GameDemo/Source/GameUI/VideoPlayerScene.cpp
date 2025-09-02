@@ -1,5 +1,4 @@
 #include "VideoPlayerScene.hpp"
-#include "../PopSceneMenu.hpp"
 #include "ui/CocosGUI.h"
 #include "ui/UIWidget.h"
 
@@ -9,37 +8,16 @@ bool VideoPlayerScene::init()
 {
     //////////////////////////////
     // 1. super init first
-    if (!Scene::init())
+    if (!TemplateScene::init())
     {
         return false;
     }
+    setTitle("Video Player");
 
     auto visibleSize = _director->getVisibleSize();
     auto origin      = _director->getVisibleOrigin();
     auto safeArea    = _director->getSafeAreaRect();
     auto safeOrigin  = safeArea.origin;
-
-    auto label = Label::createWithTTF("Video Player", "fonts/Marker Felt.ttf", 24);
-    if (label == nullptr)
-    {
-        AXLOG("can't load font'fonts/Marker Felt.ttf'");
-    }
-    else
-    {
-        label->setPosition(
-            Vec2(origin.x + visibleSize.width / 2, origin.y + visibleSize.height - label->getContentSize().height));
-        this->addChild(label, 1);
-    }
-
-    auto menu = utils::createInstance<PopSceneMenu>();
-    if (menu != nullptr)
-    {
-        this->addChild(menu, 1);
-    }
-    else
-    {
-        AXLOG("Menu init error!");
-    }
 
     auto videoPlayer = ui::VideoPlayer::create();
     videoPlayer->setURL("https://www.w3schools.com/html/mov_bbb.mp4");

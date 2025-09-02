@@ -37,6 +37,8 @@
 
 #include "Joystick/JoystickScene.hpp"
 
+#include "Networking/HttpRequestScene.hpp"
+
 USING_NS_AX;
 
 bool MainMenu::init()
@@ -106,7 +108,7 @@ ax::Vector<ax::MenuItem*> MainMenu::getMenuItems()
                                Sprite::createWithSpriteFrameName("ButtonText_Small_Orange_Square.png"), nullptr);
     auto miScale = (visibleSize.width / 6) / mi00->getContentSize().width;
     auto miStartPosition =
-        Vec2(visibleSize.width - mi00->getContentSize().width * miScale * 5, (visibleSize.height) * 7 / 8.8);
+        Vec2(visibleSize.width - mi00->getContentSize().width * miScale * 5, (visibleSize.height) * 7 / 8.8+20);
     auto lblPosition = Vec2(mi00->getContentSize().width / 2, mi00->getContentSize().height / 2);
     auto xMove       = mi00->getContentSize().width * miScale;
     auto yMove       = -mi00->getContentSize().height * miScale;
@@ -218,7 +220,13 @@ ax::Vector<ax::MenuItem*> MainMenu::getMenuItems()
         auto scene = utils::createInstance<TinySkiMapScene>();
         Director::getInstance()->pushScene(scene);
     }));
-    menuItems.pushBack(getMenuItemSprite(miStartPosition + Vec2(xMove * 3, yMove * 2), miScale, "Video Player", lblPosition,
+    menuItems.pushBack(getMenuItemSprite(miStartPosition + Vec2(xMove * 3, yMove * 2), miScale, "Tile Map!", lblPosition,
+                                         [&](ax::Object*) {
+        AXLOG("Tile Map!");
+        auto scene = utils::createInstance<TileMapScene>();
+        Director::getInstance()->pushScene(scene);
+    }));
+    menuItems.pushBack(getMenuItemSprite(miStartPosition + Vec2(xMove * 4, yMove * 2), miScale, "Video Player", lblPosition,
                                          [&](ax::Object*) {
         AXLOG("VideoPlayer Scene !");
         auto scene = utils::createInstance<VideoPlayerScene>();
@@ -289,6 +297,14 @@ ax::Vector<ax::MenuItem*> MainMenu::getMenuItems()
                                          lblPosition, [&](ax::Object*) {
         AXLOG("JSON High Scores Scene!");
         auto scene = utils::createInstance<JsonHighScoreScene>();
+        Director::getInstance()->pushScene(scene);
+    }));
+
+     // row 6
+    menuItems.pushBack(getMenuItemSprite(miStartPosition + Vec2(xMove * 0, yMove * 6), miScale, "HTTP Request",
+                                         lblPosition, [&](ax::Object*) {
+        AXLOG("Http Request Scene!");
+        auto scene = utils::createInstance<HttpRequestScene>();
         Director::getInstance()->pushScene(scene);
     }));
 

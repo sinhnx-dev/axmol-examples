@@ -1,5 +1,5 @@
 #include "PhysicWorldScene.hpp"
-#include "../PopSceneMenu.hpp"
+#include "Scenes/PopSceneMenu.hpp"
 
 USING_NS_AX;
 
@@ -49,7 +49,6 @@ bool PhysicWorldScene::init()
     // create a sprite
     auto sprite = Sprite::create("HelloWorld.png");
     sprite->setPosition(Vec2::ZERO);
-    sprite->setScale(0.5f);
     edgeNode->addChild(sprite);
     auto physicsBody = PhysicsBody::createBox(sprite->getContentSize(), PhysicsMaterial(0.1f, 1.0f, 0.0f));
     physicsBody->setDynamic(false);
@@ -60,7 +59,7 @@ bool PhysicWorldScene::init()
     {
         sprite = Sprite::create("HelloWorld.png");
         sprite->setPosition(Vec2(Vec2::ZERO.x + ax::random(-300, 300), Vec2::ZERO.y + ax::random(-300, 300)));
-        sprite->setScale(0.3f);
+        sprite->setScale(0.5f);
         physicsBody = PhysicsBody::createBox(sprite->getContentSize(), PhysicsMaterial(0.1f, 1.0f, 0.0f));
         // set the body isn't affected by the physics world's gravitational force
         physicsBody->setGravityEnable(false);

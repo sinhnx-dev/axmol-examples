@@ -1,5 +1,5 @@
 #include "SecondScene.hpp"
-#include "../PopSceneMenu.hpp"
+#include "PopSceneMenu.hpp"
 
 USING_NS_AX;
 

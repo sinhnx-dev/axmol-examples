@@ -30,7 +30,7 @@ std::vector<Player> PlayerHighScore::GetPlayersHighScore()
 
 bool PlayerHighScore::AddPlayerHighScore(Player player)
 {
-    int size = _players.size();
+    int size = (int)_players.size();
     if (size < MAX_TOP_PLAYER || _players.at(size - 1).score < player.score)
     {
         _players.push_back(player);

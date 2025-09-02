@@ -7,13 +7,14 @@ class TemplateScene : public ax::Scene
 {
 public:
     bool init() override;
-    void SetTitle(std::string title);
+    void setTitle(std::string title);
     ax::Size visibleSize;
     ax::Vec2 origin;
     ax::Rect safeArea;
     ax::Vec2 safeOrigin;
+
 private:
-    ax::Label* label;
+    ax::Label* _lblTitle;
 };
 
 #endif  // _SECOND_SCENE_HPP

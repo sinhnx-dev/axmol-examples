@@ -1,5 +1,4 @@
 #include "EventDispatchScene.hpp"
-#include "../PopSceneMenu.hpp"
 
 USING_NS_AX;
 
@@ -7,10 +6,11 @@ bool EventDispatchScene::init()
 {
     //////////////////////////////
     // 1. super init first
-    if (!Scene::init())
+    if (!TemplateScene::init())
     {
         return false;
     }
+    setTitle("Event Dispatch Scene");
 
     auto visibleSize = _director->getVisibleSize();
     auto origin      = _director->getVisibleOrigin();
@@ -40,7 +40,6 @@ bool EventDispatchScene::init()
     // trigger when you push down
     listener1->onTouchBegan = [](Touch* touch, Event* event) {
         AXLOG("onTouchBegan event");
-        // AXLOG("%s", typeid(event->getCurrentTarget()).name());
         return true;  // if you are consuming it
     };
     // trigger when moving touch
@@ -105,18 +104,10 @@ bool EventDispatchScene::init()
         str += " times";
         // _lblMouseInfo->setString(str.c_str());
         AXLOG("%s", str.c_str());
+        printf("%s\n", str.c_str());
     });
     _eventDispatcher->addEventListenerWithSceneGraphPriority(customListener, this);
 
-    auto menu = utils::createInstance<PopSceneMenu>();
-    if (menu != nullptr)
-    {
-        this->addChild(menu, 1);
-    }
-    else
-    {
-        AXLOG("Menu init error!");
-    }
     return true;
 }
 bool EventDispatchScene::onMouseDown(Event* event)
@@ -151,6 +142,7 @@ bool EventDispatchScene::onMouseScroll(Event* event)
     // to illustrate the event....
     EventMouse* e = (EventMouse*)event;
     AXLOG("Mouse Scroll detected with position: x: %f, y: %f", e->getLocation().x, e->getLocation().y);
+    printf("Mouse Scroll detected with position: x: %f, y: %f", e->getLocation().x, e->getLocation().y);
     _lblMouseInfo->setString("Mouse Event: onMouseScroll");
 
     // handle EventCustom

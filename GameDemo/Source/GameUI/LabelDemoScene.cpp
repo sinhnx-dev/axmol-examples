@@ -1,5 +1,4 @@
 #include "LabelDemoScene.hpp"
-#include "../PopSceneMenu.hpp"
 
 USING_NS_AX;
 
@@ -7,10 +6,11 @@ bool LabelDemoScene::init()
 {
     //////////////////////////////
     // 1. super init first
-    if (!Scene::init())
+    if (!TemplateScene::init())
     {
         return false;
     }
+    setTitle("Label Demo");
 
     auto visibleSize = _director->getVisibleSize();
     auto origin      = _director->getVisibleOrigin();
@@ -59,16 +59,6 @@ bool LabelDemoScene::init()
     labelGlow->setPosition(Vec2(visibleSize.width / 2, 350));
     // outline effect is TTF only, specify the outline color desired
     labelGlow->enableGlow(Color4B::YELLOW);
-
-    auto menu = utils::createInstance<PopSceneMenu>();
-    if (menu != nullptr)
-    {
-        this->addChild(menu, 1);
-    }
-    else
-    {
-        AXLOG("Menu init error!");
-    }
 
     return true;
 }

@@ -1,5 +1,4 @@
 #include "CustomParticleScene.hpp"
-#include "../PopSceneMenu.hpp"
 
 USING_NS_AX;
 
@@ -7,10 +6,11 @@ bool CustomParticleScene::init()
 {
     //////////////////////////////
     // 1. super init first
-    if (!Scene::init())
+    if (!TemplateScene::init())
     {
         return false;
     }
+    setTitle("Custom Particle Scene");
 
     auto visibleSize = _director->getVisibleSize();
     auto origin      = _director->getVisibleOrigin();
@@ -71,16 +71,6 @@ bool CustomParticleScene::init()
     // emitter->setRotatePerSecondVar(20.0);
     
     this->addChild(emitter);
-
-    auto menu = utils::createInstance<PopSceneMenu>();
-    if (menu != nullptr)
-    {
-        this->addChild(menu, 1);
-    }
-    else
-    {
-        AXLOG("Menu init error!");
-    }
 
     return true;
 }

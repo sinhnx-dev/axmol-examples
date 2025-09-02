@@ -11,8 +11,8 @@ bool SqliteHighScoreScene::init()
     {
         return false;
     }
-
-    SetTitle("SQLite Leader Board");
+    setTitle("SQLite Leader Board");
+    
     std::string lbdb                  = "LeaderBoard.db";
     SqliteLeaderBoard leaderBoard = SqliteLeaderBoard(lbdb);
 
@@ -30,7 +30,7 @@ bool SqliteHighScoreScene::init()
     }
 
     std::vector<Player> players = leaderBoard.loadLeaderBoard(10);
-    ShowHighScore(players);
+    showHighScore(players);
 
     return true;
 }

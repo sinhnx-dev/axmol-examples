@@ -28,7 +28,7 @@ bool AudioSettingScene::init()
     this->addChild(audioBox);
 
     // The background music
-    int piano   = AudioEngine::play2d("res/audio/piano-loops.wav", true, 1.0f);
+    _piano      = AudioEngine::play2d("res/audio/piano-loops.wav", true, 1.0f);
     auto slider = ui::Slider::create();
     slider->loadBarTexture("res/ui/Slider_Back.png");
     slider->loadSlidBallTextures("res/ui/SliderNode_Normal.png", "res/ui/SliderNode_Press.png",
@@ -39,7 +39,7 @@ bool AudioSettingScene::init()
         {
             auto s = dynamic_cast<ui::Slider*>(sender);
             AXLOG("music percent: %d", s->getPercent());
-            AudioEngine::setVolume(piano, (float)s->getPercent() / 100);
+            AudioEngine::setVolume(_piano, (float)s->getPercent() / 100);
         }
     });
     slider->setPercent(100);
@@ -63,11 +63,11 @@ bool AudioSettingScene::init()
         {
         case ui::CheckBox::EventType::SELECTED:
             AXLOG("Background Music Selected");
-            AudioEngine::resume(piano);
+            AudioEngine::resume(_piano);
             break;
         case ui::CheckBox::EventType::UNSELECTED:
             AXLOG("Background Music Unselected");
-            AudioEngine::pause(piano);
+            AudioEngine::pause(_piano);
             break;
         default:
             break;
@@ -102,4 +102,13 @@ void AudioSettingScene::menuBackCallback(ax::Object* sender)
 {
     AXLOG("pop scene...");
     _director->popScene();
+}
+
+AudioSettingScene::~AudioSettingScene()
+{
+#if USE_AUDIO_ENGINE
+    AudioEngine::stopAll();
+    AudioEngine::end();
+#endif
+    AXLOG("AudioSettingScene destroyed");
 }

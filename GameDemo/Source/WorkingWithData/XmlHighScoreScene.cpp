@@ -13,13 +13,12 @@ bool XmlHighScoreScene::init()
     {
         return false;
     }
-
-    SetTitle("XML Leader Board");
+    setTitle("XML Leader Board");
 
     // XmlLeaderBoard xml          = XmlLeaderBoard("res/data/LeaderBoard.xml");
     XmlLeaderBoard xml = XmlLeaderBoard(FileUtils::getInstance()->getWritablePath() + "LeaderBoard.xml");
     xml.AddPlayerHighScore(Player{"sinhnx", 80});
     std::vector<Player> players = xml.GetPlayersHighScore();
-    ShowHighScore(players);
+    showHighScore(players);
     return true;
 }

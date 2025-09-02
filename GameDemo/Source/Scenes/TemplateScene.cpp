@@ -1,5 +1,5 @@
 #include "TemplateScene.hpp"
-#include "../PopSceneMenu.hpp"
+#include "PopSceneMenu.hpp"
 
 USING_NS_AX;
 
@@ -11,22 +11,17 @@ bool TemplateScene::init()
     {
         return false;
     }
-
     visibleSize = _director->getVisibleSize();
-    origin      = _director->getVisibleOrigin();
-    safeArea    = _director->getSafeAreaRect();
-    safeOrigin  = safeArea.origin;
-
-    label = Label::createWithTTF("Template Scene", "fonts/Marker Felt.ttf", 24);
-    if (label == nullptr)
+    _lblTitle = Label::createWithTTF("Template Scene", "fonts/Marker Felt.ttf", 24);
+    if (_lblTitle == nullptr)
     {
         AXLOG("can't load font'fonts/Marker Felt.ttf'");
     }
     else
     {
-        label->setPosition(
-            Vec2(origin.x + visibleSize.width / 2, origin.y + visibleSize.height - label->getContentSize().height));
-        this->addChild(label, 1);
+        _lblTitle->setPosition(
+            Vec2(origin.x + visibleSize.width / 2, origin.y + visibleSize.height - _lblTitle->getContentSize().height));
+        this->addChild(_lblTitle, 1);
     }
 
     auto menu = utils::createInstance<PopSceneMenu>();
@@ -42,7 +37,7 @@ bool TemplateScene::init()
     return true;
 }
 
-void TemplateScene::SetTitle(std::string title)
+void TemplateScene::setTitle(std::string title)
 {
-    label->setString(title);
+    _lblTitle->setString(title);
 }

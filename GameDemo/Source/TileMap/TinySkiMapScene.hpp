@@ -2,8 +2,9 @@
 #define _TINY_SKIMAP_SCENE_HPP
 
 #include "axmol.h"
+#include "Scenes/TemplateScene.hpp"
 
-class TinySkiMapScene : public ax::Scene
+class TinySkiMapScene : public TemplateScene
 {
 public:
     bool init() override;

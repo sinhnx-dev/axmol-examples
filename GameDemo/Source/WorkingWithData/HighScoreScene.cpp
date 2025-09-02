@@ -1,7 +1,5 @@
 #include "HighScoreScene.hpp"
-#include "../PopSceneMenu.hpp"
 
-#include <vector>
 #include <string>
 USING_NS_AX;
 
@@ -13,13 +11,14 @@ bool HighScoreScene::init()
     {
         return false;
     }
+    setTitle("High Score");
 
     return true;
 }
-void HighScoreScene::ShowHighScore(std::vector<Player> players)
+void HighScoreScene::showHighScore(std::vector<Player> players)
 {
     Label* lblHighScore;
-    int i = -players.size() / 2;
+    unsigned long i = players.size() / 2;
     for (Player u : players)
     {
         lblHighScore = Label::createWithTTF(u.name + ": " + std::to_string(u.score), "fonts/Marker Felt.ttf", 20);

@@ -1,5 +1,5 @@
 #include "ContactsJointsScene.hpp"
-#include "../PopSceneMenu.hpp"
+#include "Scenes/PopSceneMenu.hpp"
 
 USING_NS_AX;
 

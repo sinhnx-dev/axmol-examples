@@ -2,9 +2,10 @@
 #define _VIDEO_PLAYER_SCENE_HPP
 
 #include "axmol.h"
+#include "Scenes/TemplateScene.hpp"
 
-class VideoPlayerScene : public ax::Scene
-{
+class VideoPlayerScene : public TemplateScene
+ {
 public:
     bool init() override;
 

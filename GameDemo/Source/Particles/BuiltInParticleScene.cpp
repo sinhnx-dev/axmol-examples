@@ -1,5 +1,4 @@
 #include "BuiltInParticleScene.hpp"
-#include "../PopSceneMenu.hpp"
 
 USING_NS_AX;
 
@@ -7,10 +6,11 @@ bool BuiltInParticleScene::init()
 {
     //////////////////////////////
     // 1. super init first
-    if (!Scene::init())
+    if (!TemplateScene::init())
     {
         return false;
     }
+    setTitle("Built-in Particle Scene");
 
     auto visibleSize = _director->getVisibleSize();
     auto origin      = _director->getVisibleOrigin();
@@ -28,16 +28,6 @@ bool BuiltInParticleScene::init()
     auto snow = ParticleSnow::create();
     snow->setPosition(Vec2(visibleSize.width / 2, visibleSize.height));
     addChild(snow, 10);
-
-    auto menu = utils::createInstance<PopSceneMenu>();
-    if (menu != nullptr)
-    {
-        this->addChild(menu, 1);
-    }
-    else
-    {
-        AXLOG("Menu init error!");
-    }
 
     return true;
 }

@@ -10,7 +10,7 @@ bool ActionSpriteScene::init()
     {
         return false;
     }
-    SetTitle("Sprite Action");
+    setTitle("Sprite Action");
     
     auto sprite1 = createSprite("Move by", Vec2(100, visibleSize.height - 50));
     this->addChild(sprite1);

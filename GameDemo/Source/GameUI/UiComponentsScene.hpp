@@ -4,8 +4,9 @@
 #include "axmol.h"
 #include "ui/CocosGUI.h"
 #include "ui/UIWidget.h"
+#include "Scenes/TemplateScene.hpp"
 
-class UiComponentsScene : public ax::Scene
+class UiComponentsScene : public TemplateScene
 {
 public:
     bool init() override;
