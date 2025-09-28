@@ -60,5 +60,11 @@ bool LabelDemoScene::init()
     // outline effect is TTF only, specify the outline color desired
     labelGlow->enableGlow(Color4B::YELLOW);
 
+    auto labelFnt = Label::createWithBMFont("fonts/ScoreBoardFont.fnt", "Label with BMFont");
+    labelFnt->setPosition(Vec2(visibleSize.width / 2, 400));
+    labelFnt->setColor(Color3B::ORANGE);
+    this->addChild(labelFnt);
+
+
     return true;
 }
